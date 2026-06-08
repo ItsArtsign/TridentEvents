@@ -1,0 +1,6 @@
+name: TridentEvents
+version: '${version}'
+
+main: dev.artsign.tridentEvents.TridentEvents
+api-version: '26.1.2'
+load: POSTWORLD
