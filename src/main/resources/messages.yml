@@ -1,0 +1,8 @@
+# TridentEvents messages.yml
+# Set anything to "" to disable
+
+event:
+  start:
+    title: '<yellow>⌚</yellow> <#5ee9b5><bold>EVENT STARTING</bold></#5ee9b5> <yellow>⌚</yellow>'
+    subtitle: 'Prepare yourself!'
+    message: '<yellow>⌚</yellow> the event is <#5ee9b5>starting</#5ee9b5>! Get ready'

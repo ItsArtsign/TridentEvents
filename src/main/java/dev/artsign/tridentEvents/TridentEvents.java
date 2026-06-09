@@ -1,5 +1,9 @@
 package dev.artsign.tridentEvents;
 
+import dev.artsign.tridentEvents.command.BaseCommand;
+import dev.artsign.tridentEvents.manager.EventManager;
+import dev.artsign.tridentEvents.manager.MessageManager;
+import dev.artsign.tridentEvents.util.TabCompleter;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class TridentEvents extends JavaPlugin {
@@ -14,14 +18,16 @@ public final class TridentEvents extends JavaPlugin {
         events or blocks for things like inventory management.
 
     - Kits
-        Predefined kits and with NBT saving and support for custom items etc (I don't know how to do this yet)
+        Predefined kits and with NBT saving and support for custom items etc. (I don't know how to do this yet)
 
     - Loot crates
         Spawn lootcrates around the world (Probably just will detect if som1 tries to open a chest, and we can use
         presistent data container since it's a block entity to see if it's already opened)
 
     - Map resetting
-        Idk
+        Will most likely just require FAWE and save the world as a schematic, or save each chunk or something. Alternitave 2 is we track
+        every modified block and manually reset it. We wouldn't want to do this in memory for performance reasons though, so this would
+        require a database potentially.
 
     - Chatting
         You should be able to talk in a regular event chat, and also a /shout command that is distinguishable from
@@ -34,13 +40,19 @@ public final class TridentEvents extends JavaPlugin {
      */
 
 
-
     @Override
     public void onEnable() {
-        // Enable things shall go here.
+
+        EventManager eventManager = new EventManager();
+        MessageManager messageManager = new MessageManager(this);
+
+        getCommand("event").setExecutor(new BaseCommand(eventManager, messageManager));
+        getCommand("event").setTabCompleter(new TabCompleter());
+
+        saveResource("messages.yml", false);
     }
 
 
-    // onDisable has been removed for cleanlines
+    // onDisable has been removed for now.
 
 }
