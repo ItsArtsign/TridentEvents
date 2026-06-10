@@ -2,8 +2,11 @@ package dev.artsign.tridentEvents;
 
 import dev.artsign.tridentEvents.command.BaseCommand;
 import dev.artsign.tridentEvents.manager.EventManager;
+import dev.artsign.tridentEvents.manager.KitManager;
 import dev.artsign.tridentEvents.manager.MessageManager;
+import dev.artsign.tridentEvents.placeholder.EventExpansion;
 import dev.artsign.tridentEvents.util.TabCompleter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class TridentEvents extends JavaPlugin {
@@ -43,13 +46,21 @@ public final class TridentEvents extends JavaPlugin {
     @Override
     public void onEnable() {
 
+        if (!(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))){
+            getLogger().warning("PlaceholderAPI is required for this plugin to run. TridentEvents will shut down now.");
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
+
+        saveResource("messages.yml", true); // SET TO FALSE FOR PRODUCTION
+
         EventManager eventManager = new EventManager();
         MessageManager messageManager = new MessageManager(this);
+        KitManager kitManager = new KitManager(this, messageManager);
 
-        getCommand("event").setExecutor(new BaseCommand(eventManager, messageManager));
-        getCommand("event").setTabCompleter(new TabCompleter());
+        new EventExpansion(eventManager, messageManager).register();
 
-        saveResource("messages.yml", false);
+        getCommand("event").setExecutor(new BaseCommand(eventManager, messageManager, kitManager));
+        getCommand("event").setTabCompleter(new TabCompleter(kitManager));
     }
 
 

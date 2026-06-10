@@ -4,6 +4,9 @@ version: '${version}'
 main: dev.artsign.tridentEvents.TridentEvents
 api-version: '26.1.2'
 load: POSTWORLD
+
+softdepend: ["PlaceholderAPI"]
+
 commands:
   event:
     description: 'Main command'

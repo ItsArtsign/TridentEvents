@@ -2,7 +2,30 @@
 # Set anything to "" to disable
 
 event:
+  kit:
+    given: '<#7bf1a8>🔱</#7bf1a8> You have received the <yellow>{0}</yellow> kit!'
+    saved: '<#7bf1a8>🔱</#7bf1a8> Kit <yellow>{0}</yellow> has been saved!'
+    invalid: '<#ff2056>✘ The specified kit "{0}" does not exist. Use <u>/event kit list</u> to see all available kits'
+    deleted: '<#7bf1a8>🔱</#7bf1a8> You have deleted kit <yellow>{0}</yellow>!'
   start:
     title: '<yellow>⌚</yellow> <#5ee9b5><bold>EVENT STARTING</bold></#5ee9b5> <yellow>⌚</yellow>'
     subtitle: 'Prepare yourself!'
     message: '<yellow>⌚</yellow> the event is <#5ee9b5>starting</#5ee9b5>! Get ready'
+
+placeholders:
+  states:
+    STARTING_SOON: 'Starting Soon'
+    JOINING: 'Joining'
+    PREPARING: 'Preparing'
+    GRACE_PERIOD: 'Grace Period'
+    MAIN_PHASE: 'Main Phase'
+    DEATHMATCH: 'Death Match'
+    ENDING: 'Ending'
+    ENDED: 'Ended'
+    INACTIVE: 'Inactive'
+
+
+debug:
+  reloaded: '<#7bf1a8>🔱</#7bf1a8> The configuration has been <yellow>reloaded</yellow>'
+  error-generic: '<#ff2056>✘ An error occured in the execution of this command'
+  error-subcommand: '<#ff2056>✘ You must specify a subcommand'
