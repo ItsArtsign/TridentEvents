@@ -10,12 +10,10 @@ import java.util.List;
 
 public class MessageManager {
 
-    TridentEvents plugin;
-    File messageFile;
+    final File messageFile;
     YamlConfiguration messageConfig;
 
     public MessageManager(TridentEvents plugin) {
-        this.plugin = plugin;
         this.messageFile = new File(plugin.getDataFolder(), "messages.yml");
         this.messageConfig = YamlConfiguration.loadConfiguration(messageFile);
     }
@@ -26,31 +24,22 @@ public class MessageManager {
         return MiniMessage.miniMessage().deserialize(value);
     }
 
-    public Component getMessage(String path, List<String> placeholders){
+    public Component getMessage(String path, List<String> placeholders) {
         String value = messageConfig.getString(path);
 
-        for (int i = 0; i < placeholders.size(); i++){
+        for (int i = 0; i < placeholders.size(); i++) {
             value = value.replace("{" + i + "}", placeholders.get(i));
         }
 
         return MiniMessage.miniMessage().deserialize(value);
     }
 
-    public String getMessageRaw(String path){
+    public String getMessageRaw(String path) {
         String value = messageConfig.getString(path);
         return value;
     }
 
-    public String getMessageRaw(String path, List<String> placeholders){
-        String value = messageConfig.getString(path);
-
-        for (int i = 0; i < placeholders.size(); i++){
-            value = value.replace("{" + i + "}", placeholders.get(i));
-        }
-        return value;
-    }
-
-    public void reload(){
+    public void reload() {
         this.messageConfig = YamlConfiguration.loadConfiguration(messageFile);
     }
 

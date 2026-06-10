@@ -1,6 +1,7 @@
 package dev.artsign.tridentEvents;
 
 import dev.artsign.tridentEvents.command.BaseCommand;
+import dev.artsign.tridentEvents.event.DeathListener;
 import dev.artsign.tridentEvents.manager.EventManager;
 import dev.artsign.tridentEvents.manager.KitManager;
 import dev.artsign.tridentEvents.manager.MessageManager;
@@ -46,7 +47,7 @@ public final class TridentEvents extends JavaPlugin {
     @Override
     public void onEnable() {
 
-        if (!(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))){
+        if (!(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI"))) {
             getLogger().warning("PlaceholderAPI is required for this plugin to run. TridentEvents will shut down now.");
             Bukkit.getPluginManager().disablePlugin(this);
         }
@@ -58,6 +59,8 @@ public final class TridentEvents extends JavaPlugin {
         KitManager kitManager = new KitManager(this, messageManager);
 
         new EventExpansion(eventManager, messageManager).register();
+
+        getServer().getPluginManager().registerEvents(new DeathListener(messageManager), this);
 
         getCommand("event").setExecutor(new BaseCommand(eventManager, messageManager, kitManager));
         getCommand("event").setTabCompleter(new TabCompleter(kitManager));

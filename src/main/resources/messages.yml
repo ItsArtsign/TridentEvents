@@ -2,6 +2,7 @@
 # Set anything to "" to disable
 
 event:
+  death: '<#ff2056>🗡</#ff2056> <yellow>{0}</yellow> has been eliminated!'
   kit:
     given: '<#7bf1a8>🔱</#7bf1a8> You have received the <yellow>{0}</yellow> kit!'
     saved: '<#7bf1a8>🔱</#7bf1a8> Kit <yellow>{0}</yellow> has been saved!'

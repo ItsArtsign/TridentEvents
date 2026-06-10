@@ -13,8 +13,8 @@ import java.util.List;
 
 public class KitManager {
 
-    TridentEvents plugin;
-    MessageManager messageManager;
+    final TridentEvents plugin;
+    final MessageManager messageManager;
 
     public KitManager(TridentEvents plugin, MessageManager messageManager) {
         this.plugin = plugin;

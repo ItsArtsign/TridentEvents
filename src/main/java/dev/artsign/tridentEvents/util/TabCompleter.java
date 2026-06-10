@@ -11,9 +11,21 @@ import java.util.List;
 
 public class TabCompleter implements org.bukkit.command.TabCompleter {
 
-    KitManager kitManager;
+    private static final List<String> ROOT_COMMANDS = List.of(
+            "start",
+            "reload",
+            "debug",
+            "kit"
+    );
+    private static final List<String> KIT_COMMANDS = List.of(
+            "save",
+            "get",
+            "delete",
+            "list"
+    );
+    final KitManager kitManager;
 
-    public TabCompleter(KitManager kitManager){
+    public TabCompleter(KitManager kitManager) {
         this.kitManager = kitManager;
     }
 
@@ -28,7 +40,7 @@ public class TabCompleter implements org.bukkit.command.TabCompleter {
             return completeKit(args[1]);
         }
 
-        if (args.length == 3 && args[1].equalsIgnoreCase("kit")){
+        if (args.length == 3 && args[1].equalsIgnoreCase("kit")) {
             return completeListKits(args[2]);
         }
 
@@ -43,21 +55,7 @@ public class TabCompleter implements org.bukkit.command.TabCompleter {
                 .toList();
     }
 
-    private static final List<String> ROOT_COMMANDS = List.of(
-            "start",
-            "reload",
-            "debug",
-            "kit"
-    );
-
-    private static final List<String> KIT_COMMANDS = List.of(
-            "save",
-            "get",
-            "delete",
-            "list"
-    );
-
-    private List<String> completeKit(String input){
+    private List<String> completeKit(String input) {
         return filter(input, KIT_COMMANDS);
     }
 
@@ -65,7 +63,7 @@ public class TabCompleter implements org.bukkit.command.TabCompleter {
         return filter(input, ROOT_COMMANDS);
     }
 
-    private List<String> completeListKits(String input){
+    private List<String> completeListKits(String input) {
         return filter(input, kitManager.getKits());
     }
 

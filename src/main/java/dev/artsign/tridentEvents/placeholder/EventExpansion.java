@@ -8,10 +8,10 @@ import org.jetbrains.annotations.NotNull;
 
 public class EventExpansion extends PlaceholderExpansion {
 
-    EventManager eventManager;
-    MessageManager messageManager;
+    final EventManager eventManager;
+    final MessageManager messageManager;
 
-    public EventExpansion(EventManager eventManager, MessageManager messageManager){
+    public EventExpansion(EventManager eventManager, MessageManager messageManager) {
         this.eventManager = eventManager;
         this.messageManager = messageManager;
     }
@@ -34,7 +34,7 @@ public class EventExpansion extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player player, @NotNull String params) {
 
-        if (params.equals("state")){
+        if (params.equals("state")) {
 
             String stateMessage = messageManager.getMessageRaw("placeholders.states." + eventManager.getEventState());
 

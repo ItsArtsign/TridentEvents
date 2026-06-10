@@ -10,9 +10,5 @@ public class EventManager {
         return eventState;
     }
 
-    public void setEventState(EventState setState) {
-        eventState = setState;
-    }
-
 
 }
