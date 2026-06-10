@@ -1,6 +1,7 @@
 package dev.artsign.tridentEvents;
 
 import dev.artsign.tridentEvents.command.BaseCommand;
+import dev.artsign.tridentEvents.event.AsyncChatListener;
 import dev.artsign.tridentEvents.event.DeathListener;
 import dev.artsign.tridentEvents.manager.EventManager;
 import dev.artsign.tridentEvents.manager.KitManager;
@@ -21,7 +22,7 @@ public final class TridentEvents extends JavaPlugin {
         grid-spawning, circle spawning, etc. Also options to freeze players and to allow/dissallow inventory
         events or blocks for things like inventory management.
 
-    - Kits
+    - Kits [COMPLETE]
         Predefined kits and with NBT saving and support for custom items etc. (I don't know how to do this yet)
 
     - Loot crates
@@ -33,7 +34,7 @@ public final class TridentEvents extends JavaPlugin {
         every modified block and manually reset it. We wouldn't want to do this in memory for performance reasons though, so this would
         require a database potentially.
 
-    - Chatting
+    - Chatting [WIP]
         You should be able to talk in a regular event chat, and also a /shout command that is distinguishable from
         the other chat messages (Maybe newlines before and after) with a permission and a cooldown (Maybe permission-based cooldowns?)
 
@@ -61,6 +62,7 @@ public final class TridentEvents extends JavaPlugin {
         new EventExpansion(eventManager, messageManager).register();
 
         getServer().getPluginManager().registerEvents(new DeathListener(messageManager), this);
+        getServer().getPluginManager().registerEvents(new AsyncChatListener(messageManager), this);
 
         getCommand("event").setExecutor(new BaseCommand(eventManager, messageManager, kitManager));
         getCommand("event").setTabCompleter(new TabCompleter(kitManager));

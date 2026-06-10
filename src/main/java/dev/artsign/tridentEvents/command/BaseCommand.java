@@ -59,6 +59,7 @@ public class BaseCommand implements CommandExecutor {
             case "reload" -> {
                 messageManager.reload();
                 player.sendMessage(messageManager.getMessage("debug.reloaded"));
+                return false;
             }
         }
 

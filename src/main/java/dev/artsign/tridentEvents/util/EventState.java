@@ -2,18 +2,18 @@ package dev.artsign.tridentEvents.util;
 
 public enum EventState {
 
-    // To alert players that an event is starting soon
+    STARTING_SOON, // To alert players that an event is starting soon
 
-    // Players can now join the event
-    //  Giving kits, resetting map, etc
+    JOINING, // Players can now join the event
+    PREPARING, //  Giving kits, resetting map, etc
 
-    // PVP Is disabled but players can move and interact
-    // PVP Enabled, Players can move around and interact
+    GRACE_PERIOD, // PVP Is disabled but players can move and interact
+    MAIN_PHASE, // PVP Enabled, Players can move around and interact
 
-    // Border Shrinks Rapidly. All other features remain unchanged
+    DEATHMATCH, // Border Shrinks Rapidly. All other features remain unchanged
 
-    // Post-processing
-    //  Event has concluded
+    ENDING, // Post-processing
+    ENDED, //  Event has concluded
 
     INACTIVE //  No active event
 

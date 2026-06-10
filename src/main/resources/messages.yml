@@ -12,6 +12,8 @@ event:
     title: '<yellow>⌚</yellow> <#5ee9b5><bold>EVENT STARTING</bold></#5ee9b5> <yellow>⌚</yellow>'
     subtitle: 'Prepare yourself!'
     message: '<yellow>⌚</yellow> the event is <#5ee9b5>starting</#5ee9b5>! Get ready'
+  chat:
+    format: "<#a684ff><bold>PARTICIPANT</bold> {0}</#a684ff> <gray>▶</gray> <white>{1}</white>"
 
 placeholders:
   states:
